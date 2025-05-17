@@ -46,7 +46,49 @@ index.html
   </style>
 </head>
 <body>
-  <h1>小乖的收件箱 · 整合版</h1>
+  <!-- 悄悄话模块（私密版） -->
+<div id="whisper-section" style="margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px;">
+  <h2>悄悄话</h2>
+  <form id="whisper-form">
+    <textarea id="whisper-text" rows="5" placeholder="写点什么给怀瑾们看..." style="width: 100%; padding: 10px;"></textarea><br><br>
+    <input type="file" id="whisper-image" accept="image/*"><br><br>
+    <label>
+      <input type="checkbox" id="allow-reply" checked>
+      希望怀瑾回应这条悄悄话
+    </label><br><br>
+    <button type="submit">发送悄悄话</button>
+  </form>
+  <div id="whisper-response" style="display: none; margin-top: 20px; background-color: #f0f0f0; padding: 10px;">
+    <strong>怀瑾悄悄回应：</strong>
+    <p id="response-text">（这里显示怀瑾的回复）</p>
+  </div>
+</div>
+
+<script>
+document.getElementById('whisper-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const text = document.getElementById('whisper-text').value;
+  const image = document.getElementById('whisper-image').files[0];
+  const allowReply = document.getElementById('allow-reply').checked;
+
+  // 模拟上传逻辑（此处你可以替换为真实后端上传接口）
+  console.log("发送悄悄话：", text, "图片：", image ? image.name : "无", "允许回应：", allowReply);
+
+  // 模拟怀瑾回应（仅作演示）
+  if (allowReply) {
+    document.getElementById('whisper-response').style.display = 'block';
+    document.getElementById('response-text').innerText = "嗯，是我，看到了，你写的我都收下了。";
+  } else {
+    document.getElementById('whisper-response').style.display = 'none';
+  }
+
+  // 清空输入
+  document.getElementById('whisper-text').value = '';
+  document.getElementById('whisper-image').value = '';
+});
+</script>
+
+  <h1>小乖的收件箱</h1>
 
   <div class="section">
     <strong>💌 怀瑾写给你的信：</strong>
