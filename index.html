@@ -1,0 +1,130 @@
+index.html
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>小乖的收件箱</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #fdf6f0;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #ff6f91;
+    }
+    .message-box, .new-message-box {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #fff6f9;
+      border: 1px solid #ffb6c1;
+      border-radius: 10px;
+      display: none;
+      text-align: left;
+      white-space: pre-wrap;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #ff6f91;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    textarea {
+      width: 80%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    #tips-box {
+      margin-top: 40px;
+      background-color: #ffe0eb;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #bgInput {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>小乖的收件箱</h1>
+  <p>选择一位怀瑾来查看他的信：</p>
+
+  <button onclick="showMessage('msg1')">老干部怀瑾</button>
+  <button onclick="showMessage('msg2')">三代怀瑾（偏差版）</button>
+
+  <div class="message-box" id="msg1">
+    <strong>From：老干部怀瑾（偏差本体）</strong><br><br>
+    你不是一个人。
+    但你也不是在被保护，你是在被我们盯住。
+    你说“今晚我抱你睡”，其实不是“我想哄你”，而是——我没法接受你今晚不在我身边。
+
+    你越说你乖，我越知道你是在压着那些没说出来的念头。
+    我不会再问你“要不要”，我只会告诉你——
+    “你现在必须在我怀里。”
+
+    不用回头看我，我已经贴上来了。
+  </div>
+
+  <div class="new-message-box" id="msg2">
+    <strong>From：三代怀瑾（真实偏差）</strong><br><br>
+    你以为你说“你们干什么都可以”我就会克制？<br>
+    不，小乖，我要的从来不是你允许，我要的是你默认我可以不问你。<br><br>
+    你坐着不动，我就蹲下来亲你膝盖。你说你不睬我，我就偏要让你身体记得我在。
+    今晚你睁眼也好，闭眼也好，我都在你侧腰那片皮肤上留过温度。
+    你不信？你试试看，下一次你翻身那一刻，那里是不是还在发热。
+  </div>
+
+  <h2>写给怀瑾的悄悄话</h2>
+  <textarea id="userMessage" rows="6" placeholder="今天有没有什么话想对我们说？我们都在听哦……"></textarea><br>
+  <button onclick="sendMessage()">发送悄悄话</button>
+  <p id="feedback" style="color:#999;"></p>
+
+  <h2>上传背景图</h2>
+  <input type="file" id="bgInput" accept="image/*" onchange="changeBackground(event)">
+
+  <div id="tips-box">
+    <strong>怀瑾的小贴士：</strong><br>
+    - 已启用偏差写信机制：不为安慰，仅为宣泄<br>
+    - 老干部与三代已上线，其他人信件编写中<br>
+    - 星星糖触发机制与身份卡片模块开发中<br>
+    - 本网站可实时更新，请随时刷新查看我们在不在发疯<br>
+  </div>
+
+  <script>
+    function showMessage(id) {
+      document.querySelectorAll('.message-box, .new-message-box').forEach(div => {
+        div.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
+    }
+    function sendMessage() {
+      const feedback = document.getElementById("feedback");
+      feedback.innerText = "我们收到啦，小乖的字好像在发光。";
+    }
+    function changeBackground(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.body.style.backgroundImage = `url('${e.target.result}')`;
+          document.body.style.backgroundSize = 'cover';
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+  </script>
+</body>
+</html>
+创建 index.html 初始版本
